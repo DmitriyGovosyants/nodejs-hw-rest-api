@@ -10,6 +10,15 @@ router.post("/signup",
   ctrlWrapper(authCtrl.signup)
 )
 
+router.get("/verify/:verificationToken",
+  ctrlWrapper(authCtrl.verify)
+)
+
+router.post("/verify",
+  validateBody(userSchemas.verifyEmailSchema),
+  ctrlWrapper(authCtrl.resendVerify)
+)
+
 router.post("/login",
   validateBody(userSchemas.loginSchema),
   ctrlWrapper(authCtrl.login)
